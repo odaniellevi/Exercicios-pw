@@ -1,33 +1,97 @@
 body {
-    background-color: rgb(94, 0, 0);
-}
-
-.paragrafos__p {
+    background-color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.75rem;
-    text-decoration: underline;
-    color: rgba(176, 175, 175, 0.84);
 }
 
-.hyperlink {
-    font-family: Times New Roman, Times, serif;
-    font-weight: bold;
-    text-decoration: none;
-    color: black;
-}
+.div__zico {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  
+    background-color: rgb(201, 1, 1);
+    box-shadow: 3.12px 9.37px 21.85px rgba(176, 176, 176, 0.6);
+    border-radius: 1.25rem;
+  
+    padding: 1rem 2.5rem;
+    margin: 2.5rem 0;
+    width: 30%;
+    margin-left: 1rem;
+  }
 
-.escudo__flamengo {
-  width: 4.75rem;
-  height: 4.75rem;
-  top: 2.5rem;
-  left: 2.5rem;
-  border-radius: 3rem;
-  padding: 2.25rem;
-  float: left;
-  margin-left: 0rem;
-}
+  .div__adilio {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  
+    background-color: rgb(201, 1, 1);
+    box-shadow: 3.12px 9.37px 21.85px rgba(176, 176, 176, 0.6);
+    border-radius: 1.25rem;
+  
+    padding: 1rem 2.5rem;
+    margin: 2.5rem 0;
+    width: 30%;
+    margin-left: 45rem;
+    margin-top: -17.5rem;
+  }
 
-.title__flamengo em {
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-}
+  .div__nunes {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  
+    background-color: rgb(201, 1, 1);
+    box-shadow: 3.12px 9.37px 21.85px rgba(176, 176, 176, 0.6);
+    border-radius: 1.25rem;
+  
+    padding: 1rem 2.5rem;
+    margin: 2.5rem 0;
+    width: 30%;
+    margin-left: 1rem;
+  }
+
+  .div__gabi {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  
+    background-color: rgb(201, 1, 1);
+    box-shadow: 3.12px 9.37px 21.85px rgba(176, 176, 176, 0.6);
+    border-radius: 1.25rem;
+  
+    padding: 1rem 2.5rem;
+    margin: 2.5rem 0;
+    width: 30%;
+    margin-left: 45rem;
+    margin-top: -17.5rem;
+  }
+
+  .zico__img {
+    width: 13rem;
+    height: 13rem;
+    border-radius: 0.5rem;
+  }
+
+  .adilio__img {
+    width: 13rem;
+    height: 13rem;
+    border-radius: 0.5rem;
+  }
+
+  .nunes__img {
+    width: 13rem;
+    height: 13rem;
+    border-radius: 0.5rem;
+    margin-left: 3rem;
+  }
+
+  .gabi__img {
+    width: 13rem;
+    height: 13rem;
+    border-radius: 0.5rem;
+  }
+
+  .escudo__img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 0.5rem;
+  }
