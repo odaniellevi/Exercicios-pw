@@ -30,7 +30,8 @@ body {
   padding: 1rem 2.5rem;
   margin: 2.5rem 0;
   width: 30%;
-  margin-left: 1rem;
+  margin-left: 40rem;
+  margin-top: -17.5rem;
 }
 
 .zico__img {
@@ -48,14 +49,15 @@ body {
 
 @media (max-width: 451px) {
   .div__zico {
-    width: 100%;
-    margin-left: 0.5rem;
+    width: 90%;
+    margin-left: 0rem;
   }
 }
 
 @media (max-width: 451px) {
   .div__gabi {
-    width: 100%;
-    margin-left: 0.5rem;
+    width: 90%;
+    margin-left: 0rem;
+    margin-top: -1rem;
   }
 }
