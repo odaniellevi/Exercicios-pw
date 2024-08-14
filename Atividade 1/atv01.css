@@ -1,0 +1,33 @@
+body {
+    background-color: rgb(94, 0, 0);
+}
+
+.paragrafos__p {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.75rem;
+    text-decoration: underline;
+    color: rgba(176, 175, 175, 0.84);
+}
+
+.hyperlink {
+    font-family: Times New Roman, Times, serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+.escudo__flamengo {
+  width: 4.75rem;
+  height: 4.75rem;
+  top: 2.5rem;
+  left: 2.5rem;
+  border-radius: 3rem;
+  padding: 2.25rem;
+  float: left;
+  margin-left: 0rem;
+}
+
+.title__flamengo em {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
