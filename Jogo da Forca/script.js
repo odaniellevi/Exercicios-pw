@@ -1,50 +1,102 @@
-const word = "life is good";
-let guessedLetteres = [];
-let incorrectGuesses = 0;
+const palavras = [
+    "abacaxi", "anel", "amigo", "ave", "abacate", "bola", "bala", "banho", 
+    "bau", "banco", "casa", "cachorro", "carro", "cafe", "cama", "dado", 
+    "dedo", "doce", "dia", "dente", "elefante", "estrela", "escola", "elo", 
+    "escada", "faca", "festa", "fogo", "foca", "fada", "gato", "galo", 
+    "gelo", "goma", "ganso", "helicoptero", "hipopotamo", "hotel", "harpa", 
+    "horta", "ilha", "iglu", "iris", "indio", "ima", "janela", "jarra", 
+    "jogo", "jumento", "joaninha", "ketchup", "kiwi", "karate", "koala", 
+    "kamikaze", "leao", "lago", "lua", "lima", "livro", "maca", "mala", 
+    "muro", "mapa", "mesa", "neve", "ninho", "navio", "nuvem", "nota", 
+    "olho", "ovo", "onda", "ouro", "orelha", "pato", "peixe", "pipoca", 
+    "pato", "perna", "quilo", "quadro", "queijo", "quina", "queda", "raio", 
+    "rosa", "rede", "rato", "roupa", "sol", "sapo", "seda", "sabao", "sapato", 
+    "tigre", "touro", "teto", "tela", "tesoura", "uva", "urso", "urna", 
+    "uniao", "umidade", "vaca", "verao", "vento", "vela", "vidro", "webcam", 
+    "whisky", "waffle", "walker", "wifi", "xale", "xadrez", "xerox", 
+    "xarope", "xampu", "yoga", "yakisoba", "yogurte", "yeti", "yuppie", 
+    "zebra", "zoologico", "zumbi", "zero", "zagueiro"
+];
 
-function displayWord() {
-    const wordContainer = document.getElementById("wordContainer");
-    wordContainer.innerHTML = "";
+let palavraSecreta = "";
+let letrasRestantes = [];
+let erros = 0;
 
-    for (let i = 0; i < word.length; i++) {
-        const letter = guessedLetters.includes(word[i]) ? word[i] : "_";
-        wordContainer.innerHTML += letter + " ";
-    }
+function iniciarJogo() {
+    palavraSecreta = escolherPalavraAleatoria();
+    letrasRestantes = palavraSecreta.split("").map(() => "_");
+    erros = 0;
+
+    atualizarPalavraSecreta();
+    gerarBotoesLetras();
+    atualizarImagemForca();
 }
 
-function createAlphabetButtons () {
-    const alphabetContainer = document.getElementById("alphabetContainer");
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
-
-    for (let i = 0; i < alphabet.length; i++) {
-            const letterButton = document.createElement("button");
-            letterButton.textContent = alphabet[i];
-            letterButton.onclick = () => guessLetter(alphabet[i]);
-            alphabetContainer.appendChild(letterButton);
-    }
+function escolherPalavraAleatoria() {
+    const index = Math.floor(Math.random() * palavras.length);
+    return palavras[index];
 }
 
-function guessLetter(letter) {
-    if(word.includes(letter)) {
-        guessedLetteres.push(letter);
-        displayWord();
+function gerarBotoesLetras() {
+    const alfabeto = "abcdefghijklmnopqrstuvwxyz".split("");
+    const botoesDiv = document.getElementById("botoes-letras");
+    botoesDiv.innerHTML = "";
+    
+    alfabeto.forEach(letra => {
+        const botao = document.createElement("button");
+        botao.textContent = letra.toUpperCase();
+        botao.onclick = () => verificarLetra(letra);
+        botoesDiv.appendChild(botao);
+    });
+}
 
-        if (!document.getElementById("wordContainer").textContent.includes("_")) {
-            alert("Parabéns, você ganhou!");
-            disableAllButtons();
+function verificarLetra(letra) {
+    let acertou = false;
+    
+    palavraSecreta.split("").forEach((char, index) => {
+        if (char === letra) {
+            letrasRestantes[index] = letra;
+            acertou = true;
         }
+    });
+
+    if (acertou) {
+        atualizarPalavraSecreta();
+        verificarVitoria();
     } else {
-        incorrectGuesses++;
-        updateHangmanImage();
-
-        if (incorrectGuesses === 6) {
-            alert("Você perdeu! A palavra correta era: " + word);
-            disableAllButtons();
-        }
+        erros++;
+        atualizarImagemForca();
+        verificarDerrota();
     }
 }
 
-function updateHangmanImage() {
-    const hangmanImage = document.getElementById("hangmanImage");
-    hangmanImage.src = `img/forca${incorrectGuesses}.png`;
+function atualizarPalavraSecreta() {
+    document.getElementById("palavra-secreta").textContent = letrasRestantes.join(" ");
 }
+
+function atualizarImagemForca() {
+    document.getElementById("boneco").src = `imagens/forca${erros}.png`;
+}
+
+
+function verificarVitoria() {
+    if (!letrasRestantes.includes("_")) {
+        document.getElementById("resultado").textContent = "Você venceu!";
+        desativarBotoes();
+    }
+}
+
+function verificarDerrota() {
+    if (erros === 6) { 
+        document.getElementById("resultado").textContent = `Você perdeu! A palavra era: ${palavraSecreta}`;
+        desativarBotoes();
+    }
+}
+
+function desativarBotoes() {
+    const botoes = document.getElementById("botoes-letras").querySelectorAll("button");
+    botoes.forEach(botao => botao.disabled = true);
+}
+
+
+iniciarJogo();
