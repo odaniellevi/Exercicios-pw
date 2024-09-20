@@ -12,14 +12,39 @@ function displayWord() {
     }
 }
 
-    function createAlphabetButtons () {
-        const alphabetContainer = document.getElementById("alphabetContainer");
-        const alphabet = "abcdefghijklmnopqrstuvwxyz";
+function createAlphabetButtons () {
+    const alphabetContainer = document.getElementById("alphabetContainer");
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-        for (let i = 0; i < alphabet.length; i++) {
+    for (let i = 0; i < alphabet.length; i++) {
             const letterButton = document.createElement("button");
             letterButton.textContent = alphabet[i];
             letterButton.onclick = () => guessLetter(alphabet[i]);
             alphabetContainer.appendChild(letterButton);
+    }
+}
+
+function guessLetter(letter) {
+    if(word.includes(letter)) {
+        guessedLetteres.push(letter);
+        displayWord();
+
+        if (!document.getElementById("wordContainer").textContent.includes("_")) {
+            alert("Parabéns, você ganhou!");
+            disableAllButtons();
+        }
+    } else {
+        incorrectGuesses++;
+        updateHangmanImage();
+
+        if (incorrectGuesses === 6) {
+            alert("Você perdeu! A palavra correta era: " + word);
+            disableAllButtons();
         }
     }
+}
+
+function updateHangmanImage() {
+    const hangmanImage = document.getElementById("hangmanImage");
+    hangmanImage.src = `img/forca${incorrectGuesses}.png`;
+}
