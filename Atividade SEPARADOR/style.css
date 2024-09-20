@@ -5,3 +5,15 @@ body {
     align-items: center;
     margin-top: 50px;
 }
+
+.letter-box {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    font-size: 2em;
+    border: 2px solid black;
+}
+
+.result {
+    margin-top: 20px;
+}
