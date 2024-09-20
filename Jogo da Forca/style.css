@@ -9,3 +9,17 @@ body {
     letter-spacing: 10px;
     margin-bottom: 20px;
 }
+
+.alphabetContainer button {
+    font-size: 1.2em;
+    margin: 5px;
+    padding: 10px;
+}
+
+.hangmanContainer {
+    margin-top: 20px;
+}
+
+.hangmanImage {
+    width: 200px;
+}
