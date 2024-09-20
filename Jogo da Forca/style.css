@@ -1,0 +1,11 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.wordContainer {
+    font-size: 2em;
+    letter-spacing: 10px;
+    margin-bottom: 20px;
+}
