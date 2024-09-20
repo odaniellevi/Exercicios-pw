@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Separador</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
 </head>
+
 <body>
     <h1>Separador</h1>
-    <label for="palavra">Palavra: <input type="text"> <input type="submit" value="Separar"></label>
+    <label for="palavra">Palavra: <input type="text" id="wordInput" placeholder="Digite uma palavra"> 
+        <button onclick="separateWord()">SEPARAR</button>
     <br><br><hr>
+    <div id="result"></div>
 </body>
+
 </html>
