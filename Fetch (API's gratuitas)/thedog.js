@@ -1,33 +1,26 @@
-const headers = new Headers({
-    "Content-Type": "application/json",
-    "x-api-key": "DEMO-API-KEY"
+document.getElementById('fetchDogImageButton').addEventListener('click', () => {
+  const apiURL = 'https://dog.ceo/api/breeds/image/random';
+
+  fetchDogImage(apiURL);
 });
 
-var requestOptions = {
-    method: 'GET',
-    headers: headers,
-    redirect: 'follow'
-};
+async function fetchDogImage(apiURL) {
+    try {
+      const response = await fetch(apiURL);
 
-fetch("https://api.thedogapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1", requestOptions)
-  .then(response => response.json())
-  .then(result => {
-    console.log(result); 
-
-    if (result && result.length > 0) {
-      const imageUrl = result[0].url;
-
-      const outputDiv = document.getElementById('output');
-      if (imageUrl) {
-        outputDiv.innerHTML = `<img src="${imageUrl}" alt="Random Dog Image" style="max-width: 300px;" />`;
-      } else {
-        outputDiv.textContent = 'Não foi possível carregar a imagem.';
+      if (!response.ok) {
+        throw new Error(`Erro HTTP! status: ${response.status}`);
       }
-    } else {
-      console.log('Nenhuma imagem foi retornada.');
-    }
-  })
-  .catch(error => {
-    console.log('Erro ao buscar dados da API:', error);
-    document.getElementById('output').textContent = 'Erro ao buscar dados da API';
-  });
+
+      const data = await response.json();
+      console.log(data);
+
+      const dogImageElement = document.getElementById('dogImage');
+
+      dogImageElement.src = data.message;
+      dogImageElement.style.display = 'block';
+  } catch (error) {
+    console.error('Erro ao buscar a imagem do cachorro:', error);
+    document.getElementById('output').textContent = `Erro ao buscar imagem: ${error.message}`;
+  }
+}
