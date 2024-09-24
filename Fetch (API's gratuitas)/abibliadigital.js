@@ -12,12 +12,24 @@ async function fetchRandomVerse(apiURL) {
             throw new Error(`Eroo HTTP! status: ${response.status}`);
         }
 
-        const verse = await response.text();
+        const data = await response.json();
 
-        console.log(verse);
+        console.log(data);
 
         const outputDiv = document.getElementById('output');
-        outputDiv.innerHTML = `<p>${verse}</p>`;
+
+        const reference = data.reference;
+        const verses = data.verses[0];
+        const bookName = verses.book_name;
+        const chapter = verses.chapter;
+        const verseNumber = verses.verse;
+        const verseText = verses.text;
+
+        outputDiv.innerHTML = `
+            <h2>${bookName} ${chapter}:${verseNumber}</h2>
+            <p>${verseText.trim()}</p>
+        `;    
+    
     } catch (error) {
         console.error('Erro ao buscar o versículo aleatório:', error);
         document.getElementById('output').textContent = `Erro ao buscar o versículo: ${error.message}`;
