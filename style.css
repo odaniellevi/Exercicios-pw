@@ -18,3 +18,19 @@ li {
 a {
     color: rgb(199, 199, 88);
 }
+
+.div_container {
+    display: flex;
+    text-align: center;
+    width: 100%;
+}
+
+.exercicio_01, .exercicio_02, .exercicio_03, .exercicio_04, .exercicio_05, .exercicio_06, .exercicio_07, .exercicio_08 {
+    display: flex;
+    flex-direction: row;
+    border-radius: 2rem;
+    justify-content: center;
+    width: 20rem;    
+    height: 8rem;
+    background-color: blue;
+}
