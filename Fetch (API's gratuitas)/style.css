@@ -1,0 +1,10 @@
+body {
+    background-color: rgb(10, 0, 68);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-align: center;
+}
+
+a {
+    color: rgb(199, 199, 88);
+}

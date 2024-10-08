@@ -2,14 +2,11 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 20px;
-}
-
-h1 {
-    color: #333;
+    background-color: rgb(10, 0, 68);
+    color: white;
 }
 
 p {
     font-size: 1.2em;
     margin-top: 20px;
-    color: #555;
 }
