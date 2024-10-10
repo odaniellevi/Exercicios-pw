@@ -6,14 +6,14 @@
     <title>Separador</title>
 
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
 </head>
 
 <body>
     <h1>Separador</h1>
     <label for="palavra">Palavra: <input type="text" id="wordInput" placeholder="Digite uma palavra"> 
-        <button onclick="separateWord()">SEPARAR</button>
+        <button id="botao-separar" onclick="separateWord()">SEPARAR</button>
     <br><br><hr>
     <div id="result"></div>
 </body>

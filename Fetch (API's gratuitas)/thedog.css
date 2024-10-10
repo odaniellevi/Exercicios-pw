@@ -1,32 +1,41 @@
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(10, 0, 68);
-    color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(10, 0, 68);
+  color: white;
 }
 
 h1 {
-    color: #333;
+  color: #333;
 }
 
 p {
-    font-size: 1.2em;
-    margin-top: 20px;
-    color: #555;
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #555;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    display: none;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  display: none;
+}
+
+#fetchDogImageButton {
+  font-size: 15px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
 }
 
 #output {
-    max-width: 500px;
-    text-align: center;
+  max-width: 500px;
+  text-align: center;
 }

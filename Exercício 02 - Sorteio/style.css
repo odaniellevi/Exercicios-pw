@@ -1,6 +1,15 @@
 body {
-    background-color: rgb(10, 0, 68);
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    text-align: center;
+  background-color: rgb(10, 0, 68);
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  text-align: center;
+}
+
+#btSortear {
+  font-size: 15px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
 }

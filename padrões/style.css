@@ -3,3 +3,21 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
+
+#botoesAfirmativos {
+  font-size: 15px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}
+
+#botoesNegativos {
+  font-size: 15px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+}
