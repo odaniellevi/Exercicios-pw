@@ -75,6 +75,7 @@ function verificarLetra(letra) {
     verificarVitoria();
   } else {
     erros++;
+    atualizarErros();
     atualizarImagemForca();
     desativarBotaoLetra(letra);
     verificarDerrota();
@@ -84,6 +85,10 @@ function verificarLetra(letra) {
 function atualizarPalavraSecreta() {
   document.getElementById("palavra-secreta").textContent =
     letrasRestantes.join(" ");
+}
+
+function atualizarErros() {
+  document.getElementById("erros").textContent = `Erros: ${erros}`;
 }
 
 function atualizarImagemForca() {
