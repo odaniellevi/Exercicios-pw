@@ -17,21 +17,47 @@ li {
 }
 
 a {
-  color: rgb(199, 199, 88);
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-#div-links {
-  font-size: 15px;
-  padding: 5px;
-  margin: 5px;
-  cursor: pointer;
-  background-color: green;
   color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.container ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ex-01,
+.ex-02,
+.ex-03,
+.ex-04,
+.ex-05,
+.ex-06,
+.ex-07,
+.ex-08,
+.api-01,
+.api-02,
+.api-03 {
+  display: flex;
+  flex-direction: row;
+  border-radius: 1rem;
+  justify-content: center;
+  width: 15rem;
+  height: 3rem;
+  color: white;
+  background-color: green;
+  align-items: center;
+}
+
+@media (max-width: 450px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
 }
