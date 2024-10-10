@@ -34,151 +34,49 @@ const palavras = [
   "gelo",
   "goma",
   "ganso",
-  "helicoptero",
-  "hipopotamo",
-  "hotel",
-  "harpa",
-  "horta",
-  "ilha",
-  "iglu",
-  "iris",
-  "indio",
-  "ima",
-  "janela",
-  "jarra",
-  "jogo",
-  "jumento",
-  "joaninha",
-  "ketchup",
-  "kiwi",
-  "karate",
-  "koala",
-  "kamikaze",
-  "leao",
-  "lago",
-  "lua",
-  "lima",
-  "livro",
-  "maca",
-  "mala",
-  "muro",
-  "mapa",
-  "mesa",
-  "neve",
-  "ninho",
-  "navio",
-  "nuvem",
-  "nota",
-  "olho",
-  "ovo",
-  "onda",
-  "ouro",
-  "orelha",
-  "pato",
-  "peixe",
-  "pipoca",
-  "pato",
-  "perna",
-  "quilo",
-  "quadro",
-  "queijo",
-  "quina",
-  "queda",
-  "raio",
-  "rosa",
-  "rede",
-  "rato",
-  "roupa",
-  "sol",
-  "sapo",
-  "seda",
-  "sabao",
-  "sapato",
-  "tigre",
-  "touro",
-  "teto",
-  "tela",
-  "tesoura",
-  "uva",
-  "urso",
-  "urna",
-  "uniao",
-  "umidade",
-  "vaca",
-  "verao",
-  "vento",
-  "vela",
-  "vidro",
-  "webcam",
-  "whisky",
-  "waffle",
-  "walker",
-  "wifi",
-  "xale",
-  "xadrez",
-  "xerox",
-  "xarope",
-  "xampu",
-  "yoga",
-  "yakisoba",
-  "yogurte",
-  "yeti",
-  "yuppie",
-  "zebra",
-  "zoologico",
-  "zumbi",
-  "zero",
-  "zagueiro",
 ];
 
-let palavraSecreta = "";
-let letrasRestantes = [];
+let palavraSecreta =
+  palavras[Math.floor(Math.random() * palavras.length)].toUpperCase();
+let letrasRestantes = palavraSecreta.split("").map(() => "_");
 let erros = 0;
 
 function iniciarJogo() {
-  palavraSecreta = escolherPalavraAleatoria();
-  letrasRestantes = palavraSecreta.split("").map(() => "_");
-  erros = 0;
-
-  atualizarPalavraSecreta();
+  document.getElementById("palavra-secreta").textContent =
+    letrasRestantes.join(" ");
+  document.getElementById("erros").textContent = `Erros: ${erros}`;
   gerarBotoesLetras();
-  atualizarImagemForca();
-}
-
-function escolherPalavraAleatoria() {
-  const index = Math.floor(Math.random() * palavras.length);
-  return palavras[index];
 }
 
 function gerarBotoesLetras() {
-  const alfabeto = "abcdefghijklmnopqrstuvwxyz".split("");
-  const botoesDiv = document.getElementById("botoes-letras");
-  botoesDiv.innerHTML = "";
+  const alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const botoesContainer = document.getElementById("botoes-letras");
+  botoesContainer.innerHTML = ""; // Limpar botões existentes
 
-  alfabeto.forEach((letra) => {
+  alfabeto.split("").forEach((letra) => {
     const botao = document.createElement("button");
-    botao.textContent = letra.toUpperCase();
-    botao.onclick = () => verificarLetra(letra);
-    botoesDiv.appendChild(botao);
+    botao.textContent = letra;
+    botao.setAttribute("data-letra", letra);
+    botao.addEventListener("click", function () {
+      verificarLetra(letra);
+    });
+    botoesContainer.appendChild(botao);
   });
 }
 
 function verificarLetra(letra) {
-  let acertou = false;
-
-  palavraSecreta.split("").forEach((char, index) => {
-    if (char === letra) {
-      letrasRestantes[index] = letra;
-      acertou = true;
+  if (palavraSecreta.includes(letra)) {
+    for (let i = 0; i < palavraSecreta.length; i++) {
+      if (palavraSecreta[i] === letra) {
+        letrasRestantes[i] = letra;
+      }
     }
-  });
-
-  if (acertou) {
     atualizarPalavraSecreta();
     verificarVitoria();
   } else {
     erros++;
     atualizarImagemForca();
+    desativarBotaoLetra(letra);
     verificarDerrota();
   }
 }
@@ -192,48 +90,30 @@ function atualizarImagemForca() {
   document.getElementById("boneco").src = `imagens/forca${erros}.png`;
 }
 
-function verificarLetra(letra) {
-  if (!palavraSecreta.includes(letra)) {
-    for (let i = 0; i < palavraSecreta.length; i++) {
-      if (palavraSecreta[i] === letra) {
-        letrasRestantes[i] = letra;
-      }
-    }
-
-    document.getElementById("palavra").textContent = letrasRestantes.join(" ");
-    if (!letrasRestantes.includes("_")) {
-      document.getElementById("resultado").textContent = "Você venceu!";
-      desativarBotoes();
-    }
-  } else {
-    desativarBotaoLetra(letra);
-    erros++;
-    document.getElementById("erros").textContent = `Erros: ${erros}`;
-    if (erros >= 6) {
-      document.getElementById(
-        "resultado"
-      ).textContent = `Você perdeu! A palavra era: ${palavraSecreta}`;
-      desativarBotoes();
-    }
+function verificarVitoria() {
+  if (!letrasRestantes.includes("_")) {
+    document.getElementById("resultado").textContent = "Você venceu!";
+    desativarBotoes();
   }
 }
 
-function reiniciarJogo() {
-  erros = 0;
-  letrasRestantes = palavraSecreta.split("").map(() => "_");
-  document.getElementById("resultado").textContent = "";
-  document.getElementById("palavra").textContent = letrasRestantes.join(" ");
-  document.getElementById("erros").textContent = `Erros: ${erros}`;
+function verificarDerrota() {
+  if (erros >= 6) {
+    document.getElementById(
+      "resultado"
+    ).textContent = `Você perdeu! A palavra era: ${palavraSecreta}`;
+    desativarBotoes();
+  }
+}
 
+function desativarBotoes() {
   const botoes = document
     .getElementById("botoes-letras")
     .querySelectorAll("button");
   botoes.forEach((botao) => {
-    botao.disabled = false;
-    botao.classList.remove("botao-desativado");
+    botao.disabled = true;
+    botao.classList.add("botao-desativado");
   });
-
-  iniciarJogo();
 }
 
 function desativarBotaoLetra(letra) {
@@ -246,12 +126,27 @@ function desativarBotaoLetra(letra) {
   }
 }
 
-document.querySelectorAll("#botoes-letras button").forEach((botao) => {
-  botao.addEventListener("click", function () {
-    const letra = this.getAttribute("data-letra");
-    verificarLetra(letra);
+function reiniciarJogo() {
+  palavraSecreta =
+    palavras[Math.floor(Math.random() * palavras.length)].toUpperCase();
+  erros = 0;
+  letrasRestantes = palavraSecreta.split("").map(() => "_");
+  document.getElementById("resultado").textContent = "";
+  document.getElementById("palavra-secreta").textContent =
+    letrasRestantes.join(" ");
+  document.getElementById("erros").textContent = `Erros: ${erros}`;
+  document.getElementById("boneco").src = "imagens/forca0.png";
+
+  const botoes = document
+    .getElementById("botoes-letras")
+    .querySelectorAll("button");
+  botoes.forEach((botao) => {
+    botao.disabled = false;
+    botao.classList.remove("botao-desativado");
   });
-});
+
+  iniciarJogo();
+}
 
 document.getElementById("btReiniciar").addEventListener("click", reiniciarJogo);
 

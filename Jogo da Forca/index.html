@@ -1,28 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jogo da Forca</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
-
-    <h1>Jogo da Forca</h1>
-
-    <div id="forca">
-        <img id="boneco" src="./imagens/forca0.png" alt="Forca">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="jogo">
+      <h1>Jogo da Forca</h1>
+      <img id="boneco" src="imagens/forca0.png" alt="Forca" />
+      <div id="palavra-secreta">_ _ _ _ _</div>
+      <div id="botoes-letras"></div>
+      <br />
+      <div id="erros">Erros: 0</div>
+      <div id="resultado"></div>
+      <div id="botao-reiniciar">
+        <button id="btReiniciar">Reiniciar</button>
+      </div>
     </div>
-
-    <div id="palavra-secreta"></div>
-    
-    <div id="botoes-letras"></div>
-
-    <div id="resultado"></div>
-
-    <div id="botao-reiniciar">
-        <button id="btReiniciar">Reiniciar Jogo</button>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
