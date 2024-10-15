@@ -1,18 +1,11 @@
-const inputDescription = document.getElementById("inputDescricption");
-const inputValue = document.getElementById("inputValue");
-const btAdic = document.getElementById("btAdic");
-const olDespesas = document.getElementById("olDespesas");
-const totalDespesas = document.getElementById("totalDespesa");
-
-const baseUrl = "https://parseapi.back4app.com/classes/Despesas";
+const baseUrl = "https://parseapi.back4app.com/classes/Despesas"; // URL base da API
 const headers = {
   "X-Parse-Application-Id": "AprcXNQtxwGIADPbOdFzEDFf1KN22MmZ3C1kLN3x",
   "X-Parse-REST-API-Key": "IUxSg4R9aja3wj6EStkDdIBzSjU555q9m0gmey9F",
 };
-
 const headersJson = {
-  "Content-Type": "application/json",
   ...headers,
+  "Content-Type": "application/json",
 };
 
 const getDespesas = async () => {
@@ -20,55 +13,57 @@ const getDespesas = async () => {
     method: "GET",
     headers,
   });
-
   const data = await response.json();
-  olDespesas.innerHTML = "";
+  const despesas = data.results;
+  const olDespesas = document.getElementById("olDespesas");
+  olDespesas.innerHTML = ""; // Limpar lista de despesas
+
   let total = 0;
-
-  data.results.forEach((despesa) => {
+  despesas.forEach((despesa) => {
     const li = document.createElement("li");
-    li.textContent = `${despesa.descricao}: R$${despesa.valor.tofixed(2)}`;
-
-    const inputNewValue = document.createElement("input");
-    inputNewValue.type = "number";
-    inputNewValue.value = despesa.valor;
-    li.appendChild(inputNewValue);
-
-    const btnRefresh = document.createElement("button");
-    btnRefresh.textContent = "Atualizar";
-    btRrefresh.onclick = () =>
-      refreshDespesa(despesa.objectId, inputNewValue.value);
-    li.appendChild(btnRefresh);
-
-    const btnDelete = document.createElement("button");
-    btnDelete.textContent = "Deletar";
-    btnDelete.onclick = () => deleteDespesa(despesa.objectId);
-    li.appendChild(btnDelete);
-
+    li.textContent = `${despesa.descricao}: R$ ${despesa.valor.toFixed(2)}`;
     olDespesas.appendChild(li);
+
+    // Botão de deletar
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Deletar";
+    deleteButton.addEventListener("click", () =>
+      deleteDespesa(despesa.objectId)
+    );
+    li.appendChild(deleteButton);
+
+    // Botão de atualizar
+    const updateButton = document.createElement("button");
+    updateButton.textContent = "Atualizar";
+    updateButton.addEventListener("click", () => {
+      const novoValor = prompt("Digite o novo valor:", despesa.valor);
+      if (novoValor) {
+        refreshDespesa(despesa.objectId, novoValor);
+      }
+    });
+    li.appendChild(updateButton);
+
     total += despesa.valor;
   });
 
-  totalDespesa.textContent = total.toFixed(2);
+  document.getElementById("totalDespesa").textContent = total.toFixed(2);
 };
 
 const addDespesa = async () => {
-  const descricao = inputDescription.value;
-  const valor = parseFloat(inputValue.value);
-  if (!descricao || isNaN(valor)) {
-    alert("Preencha todos os campos!");
+  const descricao = document.getElementById("inputDescription").value;
+  const valor = document.getElementById("inputValue").value;
+  if (!descricao || isNaN(valor) || valor <= 0) {
+    alert("Insira uma descrição e um valor válido!");
     return;
   }
 
-  const newDespesa = { descricao, valor };
   await fetch(baseUrl, {
     method: "POST",
     headers: headersJson,
-    body: JSON.stringify(newDespesa),
+    body: JSON.stringify({ descricao, valor: parseFloat(valor) }),
   });
-
-  inputDescription.value = "";
-  inputValue.value = "";
+  document.getElementById("inputDescription").value = "";
+  document.getElementById("inputValue").value = "";
   getDespesas();
 };
 
@@ -95,4 +90,4 @@ const refreshDespesa = async (id, novoValor) => {
 };
 
 window.onload = getDespesas;
-window.onclick = addDespesa;
+document.getElementById("btAdic").addEventListener("click", addDespesa);
