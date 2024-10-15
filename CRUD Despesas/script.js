@@ -1,4 +1,4 @@
-const baseUrl = "https://parseapi.back4app.com/classes/Despesas"; // URL base da API
+const baseUrl = "https://parseapi.back4app.com/classes/Despesas";
 const headers = {
   "X-Parse-Application-Id": "AprcXNQtxwGIADPbOdFzEDFf1KN22MmZ3C1kLN3x",
   "X-Parse-REST-API-Key": "IUxSg4R9aja3wj6EStkDdIBzSjU555q9m0gmey9F",
@@ -16,7 +16,7 @@ const getDespesas = async () => {
   const data = await response.json();
   const despesas = data.results;
   const olDespesas = document.getElementById("olDespesas");
-  olDespesas.innerHTML = ""; // Limpar lista de despesas
+  olDespesas.innerHTML = "";
 
   let total = 0;
   despesas.forEach((despesa) => {
@@ -24,7 +24,6 @@ const getDespesas = async () => {
     li.textContent = `${despesa.descricao}: R$ ${despesa.valor.toFixed(2)}`;
     olDespesas.appendChild(li);
 
-    // Botão de deletar
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Deletar";
     deleteButton.addEventListener("click", () =>
@@ -32,7 +31,6 @@ const getDespesas = async () => {
     );
     li.appendChild(deleteButton);
 
-    // Botão de atualizar
     const updateButton = document.createElement("button");
     updateButton.textContent = "Atualizar";
     updateButton.addEventListener("click", () => {
