@@ -21,11 +21,14 @@ const getDespesas = async () => {
   let total = 0;
   despesas.forEach((despesa) => {
     const li = document.createElement("li");
-    li.textContent = `${despesa.descricao}: R$ ${despesa.valor.toFixed(2)}`;
-    olDespesas.appendChild(li);
+
+    const span = document.createElement("span");
+    span.textContent = `${despesa.descricao}: R$ ${despesa.valor.toFixed(2)}`;
+    li.appendChild(span);
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Deletar";
+    deleteButton.classList.add("delete-button");
     deleteButton.addEventListener("click", () =>
       deleteDespesa(despesa.objectId)
     );
@@ -33,6 +36,7 @@ const getDespesas = async () => {
 
     const updateButton = document.createElement("button");
     updateButton.textContent = "Atualizar";
+    updateButton.classList.add("update-button");
     updateButton.addEventListener("click", () => {
       const novoValor = prompt("Digite o novo valor:", despesa.valor);
       if (novoValor) {
@@ -41,6 +45,7 @@ const getDespesas = async () => {
     });
     li.appendChild(updateButton);
 
+    olDespesas.appendChild(li);
     total += despesa.valor;
   });
 

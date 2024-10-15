@@ -4,3 +4,59 @@ body {
   text-align: center;
   color: white;
 }
+
+#btAdic {
+  display: flex;
+  flex-direction: row;
+  border-radius: 1rem;
+  justify-content: center;
+  width: 10rem;
+  height: 2rem;
+  color: white;
+  background-color: green;
+  align-items: center;
+  margin: 1rem auto; /* Centraliza o botão horizontalmente */
+}
+
+/* Estilo para o botão de deletar */
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px; /* Adiciona margem à direita */
+}
+
+/* Estilo para o botão de atualizar */
+.update-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px; /* Adiciona margem à direita */
+}
+
+/* Estilo para os itens da lista */
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Adiciona margem inferior para espaçamento entre os itens */
+}
+
+/* Estilo para o texto dos itens da lista */
+li span {
+  flex-grow: 1; /* Faz o texto ocupar o espaço disponível */
+}
+
+/* Estilo para a seção de total de despesas */
+#totalDespesa {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  align-items: center;
+}
