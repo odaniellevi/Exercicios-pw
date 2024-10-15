@@ -21,10 +21,8 @@ const getDespesas = async () => {
   let total = 0;
   despesas.forEach((despesa) => {
     const li = document.createElement("li");
-
-    const span = document.createElement("span");
-    span.textContent = `${despesa.descricao}: R$ ${despesa.valor.toFixed(2)}`;
-    li.appendChild(span);
+    li.textContent = `${despesa.descricao}: R$ ${despesa.valor.toFixed(2)}`;
+    olDespesas.appendChild(li);
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Deletar";
@@ -45,7 +43,6 @@ const getDespesas = async () => {
     });
     li.appendChild(updateButton);
 
-    olDespesas.appendChild(li);
     total += despesa.valor;
   });
 
