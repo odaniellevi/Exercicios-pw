@@ -13,13 +13,14 @@ a {
 
 .container ul {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
   gap: 40px;
   list-style-type: none;
   padding: 0;
   margin: 0;
+  align-items: center;
 }
 
 .api-01,
@@ -30,8 +31,17 @@ a {
   border-radius: 1rem;
   justify-content: center;
   width: 15rem;
-  height: 3rem;
+  height: 5rem;
   color: white;
   background-color: green;
   align-items: center;
+}
+
+.efeito-profundidade {
+  transition: transform 0.3s;
+}
+
+.efeito-profundidade:hover {
+  transform: scale(1.05);
+  box-shadow: 0.10px 20px rgba(0, 0, 0, 0.2);
 }
