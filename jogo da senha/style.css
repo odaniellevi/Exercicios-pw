@@ -1,14 +1,55 @@
 body {
   background-color: rgb(10, 0, 68);
+  display: flex;
   font-family: Arial, Helvetica, sans-serif, monospace;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   color: white;
+}
+
+h1 {
+  color: green;
+  text-align: center;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
+  background-color: rgb(10, 0, 68);
+  border-radius: 50px;
+  width: 20rem;
+  height: 30rem;
+  gap: 1rem;
+}
+
+p {
+  color: white;
+  font-size: 1.2rem;
+}
+
+input {
+  border-radius: 50px;
+  text-align: center;
+}
+
+input::placeholder {
+  color: black;
+}
+
+button {
+  background-color: green;
+  color: white;
+  border-radius: 50px;
+  width: 5rem;
+  height: 2rem;
+}
+
+#divResultado {
+  text-align: center;
+  overflow-y: auto;
+  width: 25rem;
+  max-height: 20rem;
 }
