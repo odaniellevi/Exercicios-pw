@@ -48,7 +48,8 @@ a {
 .ex-06,
 .ex-07,
 .ex-08,
-.ex-09 {
+.ex-09,
+.ex-10 {
   display: flex;
   flex-direction: row;
   border-radius: 1rem;
@@ -66,7 +67,7 @@ a {
 
 .efeito-profundidade:hover {
   transform: scale(1.05);
-  box-shadow: 0.10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0.1px 20px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 450px) {
