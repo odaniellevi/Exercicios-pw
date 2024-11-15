@@ -44,13 +44,14 @@ input::placeholder {
 }
 
 #btnGo,
-#btReiniciar {
+#btReiniciar,
+#btMostrar {
   display: flex;
   flex-direction: row;
   border-radius: 50px;
   justify-content: center;
   width: 10rem;
-  height: 2rem;
+  height: 3rem;
   color: white;
   background-color: green;
   align-items: center;
@@ -67,7 +68,6 @@ input::placeholder {
   overflow-y: auto;
   width: 18rem;
   max-height: 10rem;
-  margin-top: 1rem;
   border: 1px solid white;
   padding: 10px;
   box-sizing: border-box;
@@ -81,7 +81,8 @@ input::placeholder {
 
   input,
   #btnGo,
-  #btReiniciar {
+  #btReiniciar,
+  #btMostrar {
     width: 100%;
   }
 

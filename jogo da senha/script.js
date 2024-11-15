@@ -1,5 +1,6 @@
 const inputPalpite = document.getElementById("inputPalpite");
 const btnGo = document.getElementById("btnGo");
+const btnMostrar = document.getElementById("btnMostrar");
 const resultadoDiv = document.getElementById("resultadoDiv");
 let numeroSecreto = "";
 
@@ -41,12 +42,14 @@ function verificarTentativa() {
       resultadoDiv.innerHTML;
   }
 
+  // Resetar o campo de entrada após cada tentativa
   inputPalpite.value = "";
 }
 
 btnGo.addEventListener("click", verificarTentativa);
 
 const reiniciarJogo = () => {
+  // Resetar o número secreto
   numeroSecreto = "";
   while (numeroSecreto.length < 4) {
     let digitoAleatorio = Math.floor(Math.random() * 10).toString();
@@ -55,9 +58,15 @@ const reiniciarJogo = () => {
     }
   }
 
+  // Resetar tentativas e limpar a interface
   tentativas = 0;
   resultadoDiv.innerHTML = "";
   inputPalpite.value = "";
 };
 
+const mostrarCombinacao = () => {
+  alert(`A combinação secreta é: ${numeroSecreto}`);
+};
+
 document.getElementById("btReiniciar").addEventListener("click", reiniciarJogo);
+btnMostrar.addEventListener("click", mostrarCombinacao);
